@@ -63,13 +63,13 @@ class Main:
             self._init_property()
             # clear our property, if another instance is already running it should stop now
             self.WINDOW.clearProperty('SkinWidgets_Running')
-            a_total = datetime.datetime.now()
+            #a_total = datetime.datetime.now()
             self._fetch_info_randomitems()
             self._fetch_info_recommended()
             self._fetch_info_recentitems()
-            b_total = datetime.datetime.now()
-            c_total = b_total - a_total
-            log('Total time needed for all queries: %s' % c_total)
+            #b_total = datetime.datetime.now()
+            #c_total = b_total - a_total
+            #log('Total time needed for all queries: %s' % c_total)
             # give a possible other instance some time to notice the empty property
             self.WINDOW.setProperty('SkinWidgets_Running', 'true')
             self._daemon()
@@ -124,18 +124,18 @@ class Main:
                     self.RESUME = "false"
 
     def _fetch_info_recommended(self):
-        a = datetime.datetime.now()
+        #a = datetime.datetime.now()
         if __addon__.getSetting("recommended_enable") == 'true':
             self._fetch_movies('RecommendedMovie')
             self._fetch_tvshows_recommended('RecommendedEpisode')
             self._fetch_albums('RecommendedAlbum')
             self._fetch_musicvideo('RecommendedMusicVideo')
-            b = datetime.datetime.now()
-            c = b - a
-            log('Total time needed to request recommended queries: %s' % c)
+            #b = datetime.datetime.now()
+            #c = b - a
+            #log('Total time needed to request recommended queries: %s' % c)
 
     def _fetch_info_randomitems(self):
-        a = datetime.datetime.now()
+        #a = datetime.datetime.now()
         if __addon__.getSetting("randomitems_enable") == 'true':
             self.RANDOMITEMS_UNPLAYED = __addon__.getSetting("randomitems_unplayed") == 'true'
             self._fetch_movies('RandomMovie')
@@ -145,27 +145,26 @@ class Main:
             self._fetch_artist('RandomArtist')
             self._fetch_song('RandomSong')
             self._fetch_addon('RandomAddon')
-            b = datetime.datetime.now()
-            c = b - a
-            log('Total time needed to request random queries: %s' % c)
+            #b = datetime.datetime.now()
+            #c = b - a
+            #log('Total time needed to request random queries: %s' % c)
 
 
 			
     def _fetch_info_recentitems(self):
-        a = datetime.datetime.now()
+        #a = datetime.datetime.now()
         if __addon__.getSetting("recentitems_enable") == 'true':
             self.RECENTITEMS_UNPLAYED = __addon__.getSetting("recentitems_unplayed") == 'true'
             self._fetch_movies('RecentMovie')
             self._fetch_tvshows('RecentEpisode')
             self._fetch_musicvideo('RecentMusicVideo')
             self._fetch_albums('RecentAlbum')
-            b = datetime.datetime.now()
-            c = b - a
-            log('Total time needed to request recent items queries: %s' % c)
+            #b = datetime.datetime.now()
+            #c = b - a
+            #log('Total time needed to request recent items queries: %s' % c)
             
     def _fetch_movies(self, request):
         if not self.MONITOR.abortRequested():
-            log('Request: %s' % request)
             json_string = '{"jsonrpc": "2.0",  "id": 1, "method": "VideoLibrary.GetMovies", "params": {"properties": ["title", "originaltitle", "playcount", "year", "genre", "studio", "country", "tagline", "plot", "runtime", "file", "plotoutline", "lastplayed", "trailer", "rating", "resume", "art", "streamdetails", "mpaa", "director"], "limits": {"end": %d},' %self.LIMIT
             if request == 'RecommendedMovie':
                 json_query = xbmc.executeJSONRPC('%s "sort": {"order": "descending", "method": "lastplayed"}, "filter": {"field": "inprogress", "operator": "true", "value": ""}}}' %json_string)
@@ -244,8 +243,7 @@ class Main:
                     self.WINDOW.setProperty("%s.%d.AudioCodec"      % (request, count), streaminfo['audiocodec'])
                     self.WINDOW.setProperty("%s.%d.AudioChannels"   % (request, count), str(streaminfo['audiochannels']))
             del json_query
-        else:
-            log('Mame bohuzel abortRequested')
+
     def _fetch_tvshows_recommended(self, request):
         if not self.MONITOR.abortRequested():
             # First unplayed episode of recent played tvshows
