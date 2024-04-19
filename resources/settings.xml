@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <settings>
     <category label="32012">
-        <setting label="32013" type="bool" id="plot_enable" default="true"/>
+        <setting label="32013" type="bool" id="plot_enable" default="false"/>
     </category>
     <category label="32001">
-        <setting label="32001" type="bool" id="recommended_enable" default="true"/>
+        <setting label="32001" type="bool" id="recommended_enable" default="false"/>
     </category>
     <category label="32002">
-        <setting label="32002" type="bool" id="randomitems_enable" default="true"/>
+        <setting label="32002" type="bool" id="randomitems_enable" default="false"/>
         <setting label="32011" type="bool" id="randomitems_unplayed" subsetting="true" default="true" enable="eq(-1,true)"/>
         <setting label="32005" type="bool" id="randomitems_seasonfolders" subsetting="true" default="true" enable="eq(-2,true)"/>
         <setting label="32008" type="enum" id="randomitems_method" subsetting="true" enable="eq(-3,true)" default="0" lvalues="32006|32007" />
@@ -16,6 +16,6 @@
     <category label="32009">
         <setting label="32009" type="bool" id="recentitems_enable" default="true"/>
         <setting label="32011" type="bool" id="recentitems_unplayed" subsetting="true" default="true" enable="eq(-1,true)"/>
-        <setting label="32010" type="bool" id="recentitems_homeupdate" default="false"/>
+        <setting label="32010" type="bool" id="recentitems_homeupdate" default="true"/>
     </category>
 </settings>
