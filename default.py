@@ -612,7 +612,7 @@ class Main:
         count = 0
         home_update = False
         while (not self.MONITOR.abortRequested()) and self.WINDOW.getProperty('SkinWidgets_Running') == 'true':
-            self.MONITOR.waitForAbort()
+            self.MONITOR.waitForAbort(5)
             if not xbmc.Player().isPlayingVideo():
                 if self.RANDOMITEMS_UPDATE_METHOD == 0:
                     count += 1
